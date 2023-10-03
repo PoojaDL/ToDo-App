@@ -1,18 +1,17 @@
 import { Fragment, useRef } from "react";
 import Style from "./NewTodo.module.css";
 
-const NewTodo = () => {
+const NewTodo = (props) => {
   const taskInput = useRef();
   const taskDesc = useRef();
   const addTodoHandler = () => {
     const task = {
-      id: Math.random().toString(),
       task: taskInput.current.value,
       taskDescription: taskDesc.current.value,
       completed: false,
     };
     console.log(task);
-    localStorage.setItem(task.id, JSON.stringify(task));
+    props.onAddData(task);
   };
 
   const cancelHandler = () => {
